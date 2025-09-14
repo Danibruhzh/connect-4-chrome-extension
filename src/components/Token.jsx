@@ -1,11 +1,11 @@
 import { useState, useRef } from "react";
 
-function Token({ totalClicks }) {
+function Token({ totalClicks, active}) {
     const [state, setState] = useState(0);
     const flag = useRef(false);
 
     function change() {
-        if (!flag.current) {
+        if (active) {
             if (totalClicks % 2 == 0) {
                 setState(1);
             } else {
@@ -16,7 +16,7 @@ function Token({ totalClicks }) {
     }
 
     return (
-        <div className="grid" onClick={() => change()}>
+        <div className="grid" onChange={() => change()}>
             <svg className={state === 0 ? "empty" : state === 1 ? "yellow" : "red"}>
             </svg>
         </div>
