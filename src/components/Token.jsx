@@ -16,17 +16,6 @@ function Token({ totalClicks, active}) {
         }
     )
 
-    function change() {
-        if (active) {
-            if (totalClicks % 2 == 0) {
-                setState(1);
-            } else {
-                setState(2);
-            }
-            flag.current = true;
-        }
-    }
-
     return (
         <div className="grid">
             <svg className={state === 0 ? "empty" : state === 1 ? "yellow" : "red"}>
