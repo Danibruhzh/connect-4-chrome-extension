@@ -11,48 +11,55 @@ function App() {
   const [column5, setColumn5] = useState(5);
   const [column6, setColumn6] = useState(5);
   const [column7, setColumn7] = useState(5);
-  const [cur, setCur] = useState(0);
+  const [cur, setCur] = useState(99);
   const clicked = useRef([]);
   const boxes = [42];
   for (let i = 0 ; i < 42; i++){
-    boxes[i] = 1;
+    boxes[i] = i%7;
   }
 
-  function click(index){
-    if (index%7==0){
+  // useEffect(()=>{
+  //   console.log(cur)
+  // }, [clicks, cur])
+
+
+  function click(col, index){
+    if (col==0 && column1>=0){
       setCur(7*column1);
       setColumn1(prev => prev -= 1);
+      setClicks(prev => prev+=1);
     }
-    if (index%7==1){
-      setCur(7*column1+1);
+    if (col==1 && column2>=0){
+      setCur(7*column2+1);
       setColumn2(prev => prev -= 1);
+      setClicks(prev => prev+=1);
     }
-    if (index%7==2){
-      setCur(7*column1+2);
+    if (col==2 && column3>=0){
+      setCur(7*column3+2);
       setColumn3(prev => prev -= 1);
+      setClicks(prev => prev+=1);
     }
-    if (index%7==3){
-      setCur(7*column1+3);
+    if (col==3 && column4>=0){
+      setCur(7*column4+3);
       setColumn4(prev => prev -= 1);
+      setClicks(prev => prev+=1);
     }
-    if (index%7==4){
-      setCur(7*column1+4);
+    if (col==4 && column5>=0){
+      setCur(7*column5+4);
       setColumn5(prev => prev -= 1);
+      setClicks(prev => prev+=1);
     }
-    if (index%7==5){
-      setCur(7*column1+5);
+    if (col==5 && column6>=0){
+      setCur(7*column6+5);
       setColumn6(prev => prev -= 1);
+      setClicks(prev => prev+=1);
     }
-    if (index%7==6){
-      setCur(7*column1+6);
+    if (col==6 && column7>=0){
+      setCur(7*column7+6);
       setColumn7(prev => prev -= 1);
+      setClicks(prev => prev+=1);
     }
-
-
-    if (!clicked.current.includes(index)){
-      clicked.current.push(index);
-      setClicks(prev => prev +=1);
-    }
+    console.log(col, index);
   }
 
   return (
@@ -63,7 +70,7 @@ function App() {
           <div>Clicks: {clicks}</div>
           <div className="grid-container">
             {boxes.map((box, index) => (
-                <div className = "grid" key={index} onClick={() => click(index)}> 
+                <div className = "grid" key={index} onClick={() => click(box, index)}> 
                   <Token totalClicks={clicks} active={index===cur}/>
                 </div>
             ))}
