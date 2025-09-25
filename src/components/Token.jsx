@@ -13,8 +13,7 @@ function Token({ totalClicks, active}) {
             }
             flag.current = true;
         }
-        }
-    )
+    })
 
     return (
         <div className="grid">
